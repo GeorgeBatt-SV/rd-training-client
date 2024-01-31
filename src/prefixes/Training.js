@@ -1,10 +1,16 @@
 const TrainingMovies = require("./collections/movies");
 const TrainingPeople = require("./collections/people");
 
-const collections = {
-    movies: TrainingMovies,
-    people: TrainingPeople,
-};
+const collections = [
+    {
+        name: "movies",
+        class: TrainingMovies,
+    },
+    {
+        name: "people",
+        class: TrainingPeople,
+    },
+];
 
 class Training {
     constructor({ graphUrl, graphServer }) {
@@ -13,19 +19,15 @@ class Training {
         this._graphUrl = graphUrl;
         this._graphServer = graphServer;
 
-        const keys = Object.keys(collections);
-
-        for (const key of keys) {
-            const CollectionClass = collections[key];
-
+        for (const { name, class: CollectionClass } of collections) {
             const instance = new CollectionClass({
                 graphUrl: this._graphUrl,
                 graphServer: this._graphServer,
             });
 
-            this[`${key}_find`] = instance.find.bind(instance);
-            this[`${key}_insert`] = instance.insert.bind(instance);
-            this[`${key}_remove`] = instance.remove.bind(instance);
+            this[`${name}_find`] = instance.find.bind(instance);
+            this[`${name}_insert`] = instance.insert.bind(instance);
+            this[`${name}_remove`] = instance.remove.bind(instance);
         }
     }
 }
