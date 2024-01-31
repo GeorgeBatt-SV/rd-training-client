@@ -25,9 +25,7 @@ class Training {
                 graphServer: this._graphServer,
             });
 
-            this[`${name}_find`] = instance.find.bind(instance);
-            this[`${name}_insert`] = instance.insert.bind(instance);
-            this[`${name}_remove`] = instance.remove.bind(instance);
+            this[name] = instance;
         }
     }
 }
