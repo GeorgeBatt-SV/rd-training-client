@@ -1,14 +1,14 @@
-const TrainingMovies = require("./collections/movies");
-const TrainingPeople = require("./collections/people");
+const Movies = require("./collections/movies");
+const People = require("./collections/people");
 
 const collections = [
     {
         name: "movies",
-        class: TrainingMovies,
+        class: Movies,
     },
     {
         name: "people",
-        class: TrainingPeople,
+        class: People,
     },
 ];
 

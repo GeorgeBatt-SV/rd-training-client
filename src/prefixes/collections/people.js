@@ -1,13 +1,15 @@
 const { query } = require("@simpleview/sv-graphql-client");
 
-class TrainingPeople {
+class People {
     constructor({ graphUrl, graphServer }) {
         this._graphUrl = graphUrl;
         this._graphServer = graphServer;
     }
 
-    find({ fields, context, filter, headers }) {
-        return query({
+    async find({ fields, context, filter, headers }) {
+        const variables = { filter };
+
+        const response = await query({
             query: `#graphql
                 query GetPeople($filter: training_people_find_input) {
                     training {
@@ -17,51 +19,59 @@ class TrainingPeople {
                     }
                 }
             `,
-            variables: { filter },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.people_find",
             clean: true,
         });
+
+        return response;
     }
-    insert({ fields, context, input, headers }) {
-        return query({
+    async insert({ fields, context, input, headers }) {
+        const variables = { input };
+
+        const response = await query({
             query: `#graphql
                 mutation InsertPeople($input: [training_people_insert_input]!) {
                     training {
                         people_insert(input: $input) {
-                            success
-                            message
+                            ${fields}
                         }
                     }
                 }
             `,
-            variables: { input },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.people_insert",
             clean: true,
         });
+
+        return response;
     }
-    remove({ fields, context, filter, headers }) {
-        return query({
+    async remove({ fields, context, filter, headers }) {
+        const variables = { filter };
+
+        const response = await query({
             query: `#graphql
                 mutation RemovePeople($filter: training_people_remove_input) {
                     training {
                         people_remove(filter: $filter) {
-                            success
-                            message
+                            ${fields}
                         }
                     }
                 }
             `,
-            variables: { filter },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.people_remove",
             clean: true,
         });
+
+        return response;
     }
 }
 
-module.exports = TrainingPeople;
+module.exports = People;

@@ -1,13 +1,15 @@
 const { query } = require("@simpleview/sv-graphql-client");
 
-class TrainingMovies {
+class Movies {
     constructor({ graphUrl, graphServer }) {
         this._graphUrl = graphUrl;
         this._graphServer = graphServer;
     }
 
-    find({ fields, context, filter, headers }) {
-        return query({
+    async find({ fields, context, filter, headers }) {
+        const variables = { filter };
+
+        const response = await query({
             query: `#graphql
                 query GetMovies($filter: training_movies_find_input) {
                     training {
@@ -17,51 +19,59 @@ class TrainingMovies {
                     }
                 }
             `,
-            variables: { filter },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.movies_find",
             clean: true,
         });
+
+        return response;
     }
-    insert({ fields, context, input, headers }) {
-        return query({
+    async insert({ fields, context, input, headers }) {
+        const variables = { input };
+
+        const response = await query({
             query: `#graphql
                 mutation InsertMovies($input: [training_movies_insert_input]!) {
                     training {
                         movies_insert(input: $input) {
-                            success
-                            message
+                            ${fields}
                         }
                     }
                 }
             `,
-            variables: { input },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.movies_insert",
             clean: true,
         });
+
+        return response;
     }
-    remove({ fields, context, filter, headers }) {
-        return query({
+    async remove({ fields, context, filter, headers }) {
+        const variables = { filter };
+
+        const response = await query({
             query: `#graphql
                 mutation RemoveMovies($filter: training_movies_remove_input) {
                     training {
                         movies_remove(filter: $filter) {
-                            success
-                            message
+                            ${fields}
                         }
                     }
                 }
             `,
-            variables: { filter },
+            variables,
             url: this._graphUrl,
             headers,
             key: "training.movies_remove",
             clean: true,
         });
+
+        return response;
     }
 }
 
-module.exports = TrainingMovies;
+module.exports = Movies;
