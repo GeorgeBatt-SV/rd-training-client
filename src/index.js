@@ -1,5 +1,5 @@
-const Training = require("./prefixes/Training");
+const PrefixTraining = require("./prefixes/PrefixTraining");
 
 module.exports = {
-    Training,
+    PrefixTraining,
 };

@@ -12,7 +12,7 @@ const collections = [
     },
 ];
 
-class Training {
+class PrefixTraining {
     constructor({ graphUrl, graphServer }) {
         this.name = "training";
 
@@ -30,4 +30,4 @@ class Training {
     }
 }
 
-module.exports = Training;
+module.exports = PrefixTraining;
