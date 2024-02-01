@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/GeorgeBatt-SV/rd-training-client#readme",
     "dependencies": {
-        "@simpleview/sv-graphql-client": "^4.0.0"
+        "@simpleview/sv-graphql-client": "^4.0.0",
+        "graphql": "^16.8.1"
     }
 }
