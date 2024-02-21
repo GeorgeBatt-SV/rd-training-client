@@ -1,7 +1,12 @@
+const Test = require("./collections/test");
 const Movies = require("./collections/movies");
 const People = require("./collections/people");
 
 const collections = [
+	{
+		name: "test",
+		class: Test
+	},
 	{
 		name: "movies",
 		class: Movies,
