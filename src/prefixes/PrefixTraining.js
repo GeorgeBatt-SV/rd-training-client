@@ -39,12 +39,12 @@ class PrefixTraining {
 
         return response;
     }
-	async seed({ fields, context, filter, headers } = {}) {
+	async reset({ fields, context, filter, headers } = {}) {
 		const response = await query({
 			query: `#graphql
-                mutation TestSeed {
+                mutation TestReset {
 					training {
-						test_seed{
+						test_reset{
 							success
 							message
 						}
@@ -53,7 +53,7 @@ class PrefixTraining {
             `,
 			url: this._graphUrl,
 			headers,
-			key: "training.test_seed",
+			key: "training.test_reset",
 		});
 
         return response;
