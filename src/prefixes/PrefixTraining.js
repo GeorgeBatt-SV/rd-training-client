@@ -1,21 +1,13 @@
-const Test = require("./collections/test");
+const Test = require("./test");
 const Movies = require("./collections/movies");
 const People = require("./collections/people");
 
-const collections = [
-	{
-		name: "test",
-		class: Test
-	},
-	{
-		name: "movies",
-		class: Movies,
-	},
-	{
-		name: "people",
-		class: People,
-	},
-];
+function instantiate(Class, prefix) {
+	return new Class({
+		graphUrl: prefix._graphUrl,
+		graphServer: prefix._graphServer,
+	});
+}
 
 class PrefixTraining {
 	constructor({ graphUrl, graphServer }) {
@@ -24,14 +16,10 @@ class PrefixTraining {
 		this._graphUrl = graphUrl;
 		this._graphServer = graphServer;
 
-		for (const { name, class: CollectionClass } of collections) {
-			const instance = new CollectionClass({
-				graphUrl: this._graphUrl,
-				graphServer: this._graphServer,
-			});
+		this.test = instantiate(Test, this);
 
-			this[name] = instance;
-		}
+		this.movies = instantiate(Movies, this);
+		this.people = instantiate(People, this);
 	}
 }
 
