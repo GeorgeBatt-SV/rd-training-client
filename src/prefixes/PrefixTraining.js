@@ -1,4 +1,5 @@
-const Test = require("./test");
+const { query } = require("@simpleview/sv-graphql-client");
+
 const Movies = require("./collections/movies");
 const People = require("./collections/people");
 
@@ -16,11 +17,47 @@ class PrefixTraining {
 		this._graphUrl = graphUrl;
 		this._graphServer = graphServer;
 
-		this.test = instantiate(Test, this);
-
 		this.movies = instantiate(Movies, this);
 		this.people = instantiate(People, this);
 	}
+	async clear({ fields, context, filter, headers } = {}) {
+		const response = await query({
+			query: `#graphql
+                mutation TestClear {
+                    training {
+                        test_clear{
+                            success
+                            message
+                        }
+                    }
+                }
+            `,
+			url: this._graphUrl,
+			headers,
+			key: "training.test_clear",
+		});
+
+        return response;
+    }
+	async seed({ fields, context, filter, headers } = {}) {
+		const response = await query({
+			query: `#graphql
+                mutation TestSeed {
+					training {
+						test_seed{
+							success
+							message
+						}
+					}
+				}
+            `,
+			url: this._graphUrl,
+			headers,
+			key: "training.test_seed",
+		});
+
+        return response;
+    }
 }
 
 module.exports = PrefixTraining;
