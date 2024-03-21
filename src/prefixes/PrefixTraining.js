@@ -10,7 +10,7 @@ function instantiate(Class, prefix) {
 	});
 }
 
-class PrefixTraining {
+class TrainingPrefix {
 	constructor({ graphUrl, graphServer }) {
 		this.name = "training";
 
@@ -60,4 +60,4 @@ class PrefixTraining {
     }
 }
 
-module.exports = PrefixTraining;
+module.exports = TrainingPrefix;
