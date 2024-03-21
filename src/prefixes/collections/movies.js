@@ -33,7 +33,7 @@ class Movies {
 
 		const response = await query({
 			query: `#graphql
-                mutation InsertMovies($input: [training_movies_insert_input]!) {
+                mutation InsertMovies($input: [training_movies_insert_input!]!) {
                     training {
                         movies_insert(input: $input) {
                             ${fields}
