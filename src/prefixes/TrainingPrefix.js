@@ -23,9 +23,9 @@ class TrainingPrefix {
 	async clear_test_data({ fields, context, headers } = {}) {
 		const response = await query({
 			query: `#graphql
-                mutation TestClear {
+                mutation clear_test_data {
                     training {
-                        test_clear{
+                        test_clear {
                             ${fields}
                         }
                     }
@@ -41,9 +41,9 @@ class TrainingPrefix {
 	async reset_test_data({ fields, context, headers } = {}) {
 		const response = await query({
 			query: `#graphql
-                mutation TestReset {
+                mutation reset_test_data {
 					training {
-						test_reset{
+						test_reset {
 							${fields}
 						}
 					}
