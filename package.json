@@ -5,7 +5,7 @@
     "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "style": "eslint . --config .eslintrc.js"
+        "style": "eslint ."
     },
     "repository": {
         "type": "git",

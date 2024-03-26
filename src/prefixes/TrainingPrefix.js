@@ -37,8 +37,8 @@ class TrainingPrefix {
 			key: "training.test_clear",
 		});
 
-        return response;
-    }
+		return response;
+	}
 	async reset({ fields, context, filter, headers } = {}) {
 		const response = await query({
 			query: `#graphql
@@ -56,8 +56,8 @@ class TrainingPrefix {
 			key: "training.test_reset",
 		});
 
-        return response;
-    }
+		return response;
+	}
 }
 
 module.exports = TrainingPrefix;

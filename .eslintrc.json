@@ -1,5 +1,5 @@
-module.exports = {
-	rules: {
+{
+	"rules": {
 		"constructor-super": 2,
 		"for-direction": 2,
 		"getter-return": 2,
@@ -47,7 +47,7 @@ module.exports = {
 		"no-unsafe-finally": 2,
 		"no-unsafe-negation": 2,
 		"no-unused-labels": 2,
-		"no-unused-vars": [2, { vars: "all", args: "none" }],
+		"no-unused-vars": [2, { "vars": "all", "args": "none" }],
 		"no-useless-catch": 2,
 		"no-useless-escape": 2,
 		"no-with": 2,
@@ -56,14 +56,14 @@ module.exports = {
 		"valid-typeof": 2,
 		"no-var": 2,
 		"one-var-declaration-per-line": 2,
-		indent: ["error", "tab"],
+		"indent": ["error", "tab"],
 		"space-infix-ops": 2,
-		"keyword-spacing": 2,
+		"keyword-spacing": 2
 	},
-	env: {
-		node: true,
-		es2022: true,
-		mongo: true,
-		mocha: true,
-	},
-};
+	"env": {
+		"node": true,
+		"es2022": true,
+		"mongo": true,
+		"mocha": true
+	}
+}
