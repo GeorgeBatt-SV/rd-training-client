@@ -33,7 +33,7 @@ class People {
 
 		const response = await query({
 			query: `#graphql
-                mutation InsertPeople($input: [training_people_insert_input]!) {
+                mutation InsertPeople($input: [training_people_insert_input!]!) {
                     training {
                         people_insert(input: $input) {
                             ${fields}
