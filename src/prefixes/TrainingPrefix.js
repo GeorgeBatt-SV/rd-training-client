@@ -20,7 +20,7 @@ class TrainingPrefix {
 		this.movies = instantiate(Movies, this);
 		this.people = instantiate(People, this);
 	}
-	async clear({ fields, context, filter, headers } = {}) {
+	async clear_test_data({ fields, context, filter, headers } = {}) {
 		const response = await query({
 			query: `#graphql
                 mutation TestClear {
@@ -39,7 +39,7 @@ class TrainingPrefix {
 
 		return response;
 	}
-	async reset({ fields, context, filter, headers } = {}) {
+	async reset_test_data({ fields, context, filter, headers } = {}) {
 		const response = await query({
 			query: `#graphql
                 mutation TestReset {
