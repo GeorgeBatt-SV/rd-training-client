@@ -3,13 +3,6 @@ const { query } = require("@simpleview/sv-graphql-client");
 const Movies = require("./collections/movies");
 const People = require("./collections/people");
 
-function instantiate(Class, prefix) {
-	return new Class({
-		graphUrl: prefix._graphUrl,
-		graphServer: prefix._graphServer,
-	});
-}
-
 class TrainingPrefix {
 	constructor({ graphUrl, graphServer }) {
 		this.name = "training";
@@ -17,8 +10,8 @@ class TrainingPrefix {
 		this._graphUrl = graphUrl;
 		this._graphServer = graphServer;
 
-		this.movies = instantiate(Movies, this);
-		this.people = instantiate(People, this);
+		this.movies = new Movies({ graphUrl, graphServer });
+		this.people = new People({ graphUrl, graphServer });
 	}
 	async clear_test_data({ fields, context, headers }) {
 		const response = await query({
